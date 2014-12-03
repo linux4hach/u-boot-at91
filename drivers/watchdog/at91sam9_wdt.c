@@ -68,10 +68,12 @@ void hw_watchdog_reset(void)
 {
 	at91_wdt_t *wd = (at91_wdt_t *) ATMEL_BASE_WDT;
 	writel(AT91_WDT_CR_WDRSTT | AT91_WDT_CR_KEY, &wd->cr);
+	
 }
 
 void hw_watchdog_init(void)
 {
 	/* 16 seconds timer, resets enabled */
+	printf("set the watchdog timeout");
 	at91_wdt_settimeout(ms_to_ticks(WDT_HW_TIMEOUT * 1000));
 }

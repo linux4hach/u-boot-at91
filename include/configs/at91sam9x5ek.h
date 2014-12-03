@@ -12,6 +12,15 @@
 #include <asm/hardware.h>
 
 #define CONFIG_SYS_TEXT_BASE		0x26f00000
+/* Enable the watchdog */
+#define CONFIG_AT91SAM9_WATCHDOG
+#define CONFIG_HW_WATCHDOG
+
+//#define CONFIG_OF_CONTROL
+//#define CONFIG_FIT
+//#define CONFIG_FIT_SIGNATURE
+//#define CONFIG_RSA
+//#define CONFIG_FIT_VERBOSE
 
 /* ARM asynchronous clock */
 #define CONFIG_SYS_AT91_SLOW_CLOCK	32768
@@ -184,8 +193,10 @@
 #elif defined(CONFIG_SYS_USE_SPIFLASH)
 /* bootstrap + u-boot + env + linux in spi flash */
 #define CONFIG_ENV_IS_IN_SPI_FLASH
-#define CONFIG_ENV_OFFSET	0x5000
-#define CONFIG_ENV_SIZE		0x3000
+#define CONFIG_ENV_OFFSET	0x4200
+#define CONFIG_ENV_SIZE		0x4200
+//doesn't support backup env block - ry
+//#define CONFIG_ENV_OFFSET_REDUND 0x8000
 #define CONFIG_ENV_SECT_SIZE	0x1000
 #define CONFIG_ENV_SPI_MAX_HZ	30000000
 #define CONFIG_BOOTCOMMAND	"sf probe 0; " \
@@ -194,9 +205,11 @@
 #elif defined(CONFIG_SYS_USE_DATAFLASH)
 /* bootstrap + u-boot + env + linux in data flash */
 #define CONFIG_ENV_IS_IN_SPI_FLASH
-#define CONFIG_ENV_OFFSET	0x4200
-#define CONFIG_ENV_SIZE		0x4200
-#define CONFIG_ENV_SECT_SIZE	0x210
+#define CONFIG_ENV_OFFSET	0x5000
+#define CONFIG_ENV_SIZE		0x3000
+//doesn't support backup env block - ry
+//#define CONFIG_ENV_OFFSET_REDUND 0x8000
+#define CONFIG_ENV_SECT_SIZE	0x1000
 #define CONFIG_ENV_SPI_MAX_HZ	30000000
 #define CONFIG_BOOTCOMMAND	"sf probe 0; " \
 				"sf read 0x22000000 0x84000 0x294000; " \
