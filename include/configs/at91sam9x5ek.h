@@ -188,8 +188,10 @@
 #define CONFIG_ENV_OFFSET_REDUND	0x100000
 #define CONFIG_ENV_SIZE		0x20000		/* 1 sector = 128 kB */
 #define CONFIG_BOOTCOMMAND	"nand read " \
-				"0x22000000 0x200000 0x300000; " \
-				"bootm 0x22000000"
+				"0x21000000 0x180000 0x80000; " \
+				"nand read " \
+				"0x22000000 0x200000 0x600000; " \
+				"bootz 0x22000000 - 0x21000000"
 #elif defined(CONFIG_SYS_USE_SPIFLASH)
 /* bootstrap + u-boot + env + linux in spi flash */
 #define CONFIG_ENV_IS_IN_SPI_FLASH
@@ -222,6 +224,7 @@
 #define FAT_ENV_FILE		"uboot.env"
 #define FAT_ENV_DEVICE_AND_PART	"0"
 #define CONFIG_ENV_SIZE		0x4000
+#define CONFIG_BOOTCOMMAND      "fatload mmc 0 0x21000000 at91sam9g35ek.dtb; fatload mmc 0 0x22000000 zImage; bootz 0x22000000 - 0x21000000"
 #endif
 
 #ifdef CONFIG_SYS_USE_MMC
@@ -251,6 +254,9 @@
 #define CONFIG_AUTO_COMPLETE
 #define CONFIG_SYS_HUSH_PARSER
 
+
+/* user-defined env variables */
+#define CONFIG_EXTRA_ENV_SETTINGS "ethact=macb0 stderr=serial stdin=serial stdout=serial serialnum=12345678"
 /*
  * Size of malloc() pool
  */
