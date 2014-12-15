@@ -229,8 +229,9 @@
 
 #ifdef CONFIG_SYS_USE_MMC
 #define CONFIG_BOOTARGS		"mem=128M console=ttyS0,115200 " \
-				"mtdparts=atmel_nand:" \
-				"8M(bootstrap/uboot/kernel)ro,-(rootfs) " \
+				"mtdparts=atmel_nand:256k(bootstrap)ro,512k(uboot)ro,"		\
+				"256k(env),256k(env_redundant),256k(spare),"			\
+				"512k(dtb),6M(kernel)ro,-(rootfs) "				\
 				"root=/dev/mmcblk0p2 " \
 				"rw rootfstype=ext4 rootwait"
 #else
