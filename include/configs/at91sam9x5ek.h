@@ -13,9 +13,8 @@
 
 #define CONFIG_SYS_TEXT_BASE		0x26f00000
 /* Enable the watchdog */
-/*#define CONFIG_AT91SAM9_WATCHDOG
+#define CONFIG_AT91SAM9_WATCHDOG
 #define CONFIG_HW_WATCHDOG
-*/
 
 //#define CONFIG_OF_CONTROL
 //#define CONFIG_FIT
