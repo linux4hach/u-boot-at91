@@ -16,6 +16,15 @@
 #define CONFIG_AT91SAM9_WATCHDOG
 #define CONFIG_HW_WATCHDOG
 
+//default settings
+#define CONFIG_ETHADDR     00:0e:1c:00:00:01
+#define CONFIG_SERVERIP    192.168.1.1
+#define CONFIG_IPADDR      192.168.1.2
+#define CONFIG_NETMASK     255.255.255.0 
+#define CONFIG_HOSTNAME    CM130
+/* user-defined env variables */
+#define CONFIG_EXTRA_ENV_SETTINGS "ethact=macb0 stderr=serial stdin=serial stdout=serial serial_num=00000001"
+
 //#define CONFIG_OF_CONTROL
 //#define CONFIG_FIT
 //#define CONFIG_FIT_SIGNATURE
@@ -108,7 +117,11 @@
 #define CONFIG_ATMEL_SPI
 #define CONFIG_SPI_FLASH
 #define CONFIG_SPI_FLASH_ATMEL
-#define CONFIG_SF_DEFAULT_SPEED		30000000
+#define CONFIG_SPI_FLASH_SPANSION
+#define CONFIG_SPI_FLASH_STMICRO
+
+#define CONFIG_SPI_FLASH_BAR
+#define CONFIG_SF_DEFAULT_SPEED		50000000
 #endif
 
 /* NAND flash */
@@ -207,15 +220,15 @@
 #elif defined(CONFIG_SYS_USE_DATAFLASH)
 /* bootstrap + u-boot + env + linux in data flash */
 #define CONFIG_ENV_IS_IN_SPI_FLASH
-#define CONFIG_ENV_OFFSET	0x5000
-#define CONFIG_ENV_SIZE		0x3000
+#define CONFIG_ENV_OFFSET	0xC0000
+#define CONFIG_ENV_SIZE		0x40000
 //doesn't support backup env block - ry
 //#define CONFIG_ENV_OFFSET_REDUND 0x8000
-#define CONFIG_ENV_SECT_SIZE	0x1000
-#define CONFIG_ENV_SPI_MAX_HZ	30000000
+#define CONFIG_ENV_SECT_SIZE	0x40000
+#define CONFIG_ENV_SPI_MAX_HZ	66000000
 #define CONFIG_BOOTCOMMAND	"sf probe 0; " \
-				"sf read 0x22000000 0x84000 0x294000; " \
-				"bootm 0x22000000"
+				"sf read 0x22000000 0x140000 0x600000; sf read 0x21000000 0x100000 0x40000;" \
+				"bootz 0x22000000 - 0x21000000"
 #else /* CONFIG_SYS_USE_MMC */
 /* bootstrap + u-boot + env + linux in mmc */
 #define CONFIG_ENV_IS_IN_FAT
@@ -234,6 +247,13 @@
 				"512k(dtb),6M(kernel),-(rootfs) "				\
 				"root=/dev/mmcblk0p2 " \
 				"rw rootfstype=ext4 rootwait"
+
+#elif defined(CONFIG_SYS_USE_DATAFLASH)
+#define CONFIG_BOOTARGS							\
+	"console=ttyS0,115200 earlyprintk "				\
+	"mtdparts=spi32766.0:256k(bootstrap),512k(uboot),"		\
+	"256k(env),256k(dtb),6M(kernel),55M(rootfs),10M(root),10M(etc),10M(var),-(mnt) "	                \
+	"rootfstype=squashfs  root=/dev/mtdblock5"
 #else
 #define CONFIG_BOOTARGS							\
 	"console=ttyS0,115200 earlyprintk "				\
@@ -256,8 +276,6 @@
 #define CONFIG_SYS_HUSH_PARSER
 
 
-/* user-defined env variables */
-#define CONFIG_EXTRA_ENV_SETTINGS "ethact=macb0 stderr=serial stdin=serial stdout=serial serialnum=12345678"
 /*
  * Size of malloc() pool
  */
