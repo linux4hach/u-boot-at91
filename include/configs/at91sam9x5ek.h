@@ -236,15 +236,14 @@
 #define FAT_ENV_INTERFACE	"mmc"
 #define FAT_ENV_FILE		"uboot.env"
 #define FAT_ENV_DEVICE_AND_PART	"0"
-#define CONFIG_ENV_SIZE		0x4000
+#define CONFIG_ENV_SIZE		0x40000
 #define CONFIG_BOOTCOMMAND      "fatload mmc 0 0x21000000 at91sam9g35ek.dtb; fatload mmc 0 0x22000000 zImage; bootz 0x22000000 - 0x21000000"
 #endif
 
 #ifdef CONFIG_SYS_USE_MMC
 #define CONFIG_BOOTARGS		"mem=128M console=ttyS0,115200 " \
-				"mtdparts=atmel_nand:256k(bootstrap),512k(uboot),"		\
-				"256k(env),256k(env_redundant),256k(spare),"			\
-				"512k(dtb),6M(kernel),-(rootfs) "				\
+				"mtdparts=spi32766.0:256k(bootstrap),512k(uboot),"		\
+				"256k(env),256k(dtb),6M(kernel),58M(rootfs),10M(root),10M(etc),10M(var),-(mnt) "  \
 				"root=/dev/mmcblk0p2 " \
 				"rw rootfstype=ext4 rootwait"
 
@@ -252,7 +251,7 @@
 #define CONFIG_BOOTARGS							\
 	"console=ttyS0,115200 earlyprintk "				\
 	"mtdparts=spi32766.0:256k(bootstrap),512k(uboot),"		\
-	"256k(env),256k(dtb),6M(kernel),55M(rootfs),10M(root),10M(etc),10M(var),-(mnt) "	                \
+	"256k(env),256k(dtb),6M(kernel),58M(rootfs),10M(root),10M(etc),10M(var),-(mnt) "	                \
 	"rootfstype=squashfs  root=/dev/mtdblock5"
 #else
 #define CONFIG_BOOTARGS							\
