@@ -285,6 +285,17 @@ int board_init(void)
 #ifdef CONFIG_LCD
 	at91sam9x5ek_lcd_hw_init();
 #endif
+
+	/* turn off all remote indicator LED driver outputs so no LEDs
+	 * are on while Linux is booting up
+	 */
+	at91_set_gpio_output(AT91_PIN_PD16, 0);
+   at91_set_gpio_output(AT91_PIN_PD17, 0);
+   at91_set_gpio_output(AT91_PIN_PD18, 0);
+   at91_set_gpio_output(AT91_PIN_PD19, 0);
+   at91_set_gpio_output(AT91_PIN_PD20, 0);
+   at91_set_gpio_output(AT91_PIN_PD21, 0);
+
 	return 0;
 }
 
