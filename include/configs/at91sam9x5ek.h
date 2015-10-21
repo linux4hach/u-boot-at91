@@ -23,7 +23,7 @@
 #define CONFIG_NETMASK     255.255.255.0 
 #define CONFIG_HOSTNAME    CM130
 /* user-defined env variables */
-#define CONFIG_EXTRA_ENV_SETTINGS "ethact=macb0 stderr=serial stdin=serial stdout=serial serial_num=00000001"
+#define CONFIG_EXTRA_ENV_SETTINGS "ethact=macb0\0" "stderr=serial\0" "stdin=serial\0" "stdout=serial\0" "serial_num=00000001\0"
 
 //#define CONFIG_OF_CONTROL
 //#define CONFIG_FIT
