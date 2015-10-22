@@ -17,13 +17,16 @@
 #define CONFIG_HW_WATCHDOG
 
 //default settings
-#define CONFIG_ETHADDR     00:0e:1c:00:00:01
+#define CONFIG_ETHADDR     00:0e:1c:99:99:99
+#define CONFIG_OVERWRITE_ETHADDR_ONCE 1
+/* include version env variable */
+#define CONFIG_VERSION_VARIABLE	1	
 #define CONFIG_SERVERIP    192.168.1.1
 #define CONFIG_IPADDR      192.168.1.2
 #define CONFIG_NETMASK     255.255.255.0 
 #define CONFIG_HOSTNAME    CM130
 /* user-defined env variables */
-#define CONFIG_EXTRA_ENV_SETTINGS "ethact=macb0\0" "stderr=serial\0" "stdin=serial\0" "stdout=serial\0" "serial_num=00000001\0"
+//#define CONFIG_EXTRA_ENV_SETTINGS "ethact=macb0\0" "stderr=serial\0" "stdin=serial\0" "stdout=serial\0" "serial_num=00000001\0"
 
 //#define CONFIG_OF_CONTROL
 //#define CONFIG_FIT
