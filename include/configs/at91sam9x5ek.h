@@ -69,8 +69,8 @@
 #define CONFIG_LCD
 #define LCD_BPP			LCD_COLOR16
 #define LCD_OUTPUT_BPP		24
-#define CONFIG_LCD_LOGO
-#define CONFIG_LCD_INFO
+//#define CONFIG_LCD_LOGO
+//#define CONFIG_LCD_INFO
 //#define CONFIG_LCD_INFO_BELOW_LOGO
 //#define CONFIG_SYS_WHITE_ON_BLACK
 #define CONFIG_ATMEL_HLCD
@@ -105,6 +105,8 @@
 #define CONFIG_CMD_FAT
 #define CONFIG_CMD_USB
 #define CONFIG_CMD_JFFS2
+#define CONFIG_SYS_JFFS2_FIRST_BANK 0
+#define CONFIG SYS_JFFS2_FIRST_SECTOR 6
 
 /*
  * define CONFIG_USB_EHCI to enable USB Hi-Speed (aka 2.0)
@@ -158,8 +160,8 @@
 #define CONFIG_MTD_PARTITIONS
 #define CONFIG_RBTREE
 #define CONFIG_LZO
-#define CONFIG_CMD_UBI
-#define CONFIG_CMD_UBIFS
+//#define CONFIG_CMD_UBI
+//#define CONFIG_CMD_UBIFS
 #endif
 
 /* MMC */
