@@ -104,6 +104,7 @@
 #define CONFIG_CMD_MMC
 #define CONFIG_CMD_FAT
 #define CONFIG_CMD_USB
+#define CONFIG_CMD_JFFS2
 
 /*
  * define CONFIG_USB_EHCI to enable USB Hi-Speed (aka 2.0)
