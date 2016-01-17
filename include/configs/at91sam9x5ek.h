@@ -15,9 +15,13 @@
 /* Enable the watchdog */
 #define CONFIG_AT91SAM9_WATCHDOG
 #define CONFIG_HW_WATCHDOG
+#define CONFIG_USE_SPIFLASH
 
 #define CONFIG_SPLASHSCREEN
 #define CONFIG_CMD_BMP
+#define MTDIDS_DEFAULT "nor0=spi32766.0"
+#define MTDPARTS_DEFAULT "mtdparts=spi32766.0:256k(bootstrap),512k(uboot),"		\
+	"256k(env),256k(dtb),6M(kernel),58M(rootfs),20M(hach),2M(jail),-(var) " \
 
 
 //default settings
@@ -256,7 +260,6 @@
 #define CONFIG_BOOTARGS		"mem=128M console=ttyS0,115200 " \
 				"mtdparts=spi32766.0:256k(bootstrap),512k(uboot),"		\
 				"256k(env),256k(dtb),6M(kernel),58M(rootfs),20M(hach),2M(jail),-(var) "  \
-                "mtdids=spi0=spi32766.0" \
 				"root=/dev/mmcblk0p2 " \
 				"rw rootfstype=ext4 rootwait"
 
@@ -265,7 +268,6 @@
 	"console=ttyS0,115200 earlyprintk "				\
 	"mtdparts=spi32766.0:256k(bootstrap),512k(uboot),"		\
 	"256k(env),256k(dtb),6M(kernel),58M(rootfs),20M(hach),2M(jail),-(var) " \
-     "mtdids=spi0=spi32766.0"
 	"rootfstype=squashfs  root=/dev/mtdblock5"
 #else
 #define CONFIG_BOOTARGS							\
