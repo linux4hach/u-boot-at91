@@ -16,12 +16,13 @@
 #define CONFIG_AT91SAM9_WATCHDOG
 #define CONFIG_HW_WATCHDOG
 #define CONFIG_USE_SPIFLASH
+#define CONFIG_SPI_FLASH_MTD
 
 #define CONFIG_SPLASHSCREEN
 #define CONFIG_CMD_BMP
 #define MTDIDS_DEFAULT "nor0=spi32766.0"
 #define MTDPARTS_DEFAULT "mtdparts=spi32766.0:256k(bootstrap),512k(uboot),"		\
-	"256k(env),256k(dtb),6M(kernel),58M(rootfs),20M(hach),2M(jail),-(var) " \
+	"256k(env),256k(dtb),6M(kernel),58M(rootfs),20M(hach),2M(jail),-(var) " 
 
 
 //default settings
